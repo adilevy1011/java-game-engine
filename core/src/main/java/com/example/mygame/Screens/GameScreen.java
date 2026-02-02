@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.example.mygame.Entities.Enemy;
 import com.example.mygame.Entities.FireBall;
 import com.example.mygame.Entities.Player;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class GameScreen extends Screen {
     
@@ -20,6 +21,8 @@ public class GameScreen extends Screen {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private Texture background;
+    private OrthographicCamera camera;
+
     public GameScreen() {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
@@ -27,7 +30,8 @@ public class GameScreen extends Screen {
         fireBalls = new ArrayList<FireBall>();
         player = new Player("sprite.png", 100, 100, 70, 70, 100, 3);
         enemies = new ArrayList<Enemy>();
-
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         for (int i = 0; i < 3; i++) {
             enemies.add(new Enemy("enemy.png", 200 + i * 120, 200, 50, 50,1));
         }
@@ -36,8 +40,14 @@ public class GameScreen extends Screen {
     @Override
     public void render() {
         ScreenUtils.clear(1f,1f, 1f, 1f);
+        camera.position.set(player.getX() + player.getWidth()/2f,
+                    player.getY() + player.getHeight()/2f,
+                    0);
+        camera.update();
         float delta = Gdx.graphics.getDeltaTime(); 
         batch.begin();
+        batch.setProjectionMatrix(camera.combined);
+        shapeRenderer.setProjectionMatrix(camera.combined);
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
         
