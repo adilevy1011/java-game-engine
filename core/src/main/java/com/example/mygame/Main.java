@@ -1,35 +1,30 @@
 package com.example.mygame;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.example.mygame.Screens.*;
+import com.badlogic.gdx.Screen;
 
 /**
  * Main game class that initializes and runs the screens.
  */
-public class Main extends ApplicationAdapter {
+public class Main extends Game {
     
-    
+    private MenuScreen menuScreen;
     private GameScreen gameScreen;
+    private Screen currentScreen;
+    private ArrayList <Screen> screens;
     /**
      * Called when the application is created.
      */
     @Override
     public void create() {
-        gameScreen = new GameScreen();
+        menuScreen = new MenuScreen(this);
+        setScreen(menuScreen);
     }
-    /** 
-     * Called every frame to render the game.
-     */
-    @Override
-    public void render() {
-        gameScreen.render();
-        
-    }
-    /** 
-     * Called when the application is destroyed to clean up resources.
-     */
-    @Override
-    public void dispose() {
-        gameScreen.dispose();
-    }
+    
+
+    
 }

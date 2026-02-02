@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -12,8 +13,9 @@ import com.example.mygame.Entities.Enemy;
 import com.example.mygame.Entities.FireBall;
 import com.example.mygame.Entities.Player;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.example.mygame.Main;
 
-public class GameScreen extends Screen {
+public class GameScreen implements Screen {
     
     private Player player;
     private ArrayList<Enemy> enemies;
@@ -22,8 +24,11 @@ public class GameScreen extends Screen {
     private ShapeRenderer shapeRenderer;
     private Texture background;
     private OrthographicCamera camera;
-
-    public GameScreen() {
+    private Main game;
+    public GameScreen(Main game) {
+        this.game = game;
+    }
+    public void show() {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         background = new Texture("grassBackground.jpg");
@@ -31,20 +36,19 @@ public class GameScreen extends Screen {
         player = new Player("sprite.png", 100, 100, 70, 70, 100, 3);
         enemies = new ArrayList<Enemy>();
         camera = new OrthographicCamera();
+
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         for (int i = 0; i < 3; i++) {
             enemies.add(new Enemy("enemy.png", 200 + i * 120, 200, 50, 50,1));
         }
     }
-    
     @Override
-    public void render() {
+    public void render(float delta) {
         ScreenUtils.clear(1f,1f, 1f, 1f);
-        camera.position.set(player.getX() + player.getWidth()/2f,
-                    player.getY() + player.getHeight()/2f,
-                    0);
+        camera.position.set(player.getX() + player.getWidth()/2f, player.getY() + player.getHeight()/2f, 0);
+        
         camera.update();
-        float delta = Gdx.graphics.getDeltaTime(); 
+        float d = Gdx.graphics.getDeltaTime(); 
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -53,12 +57,12 @@ public class GameScreen extends Screen {
         
         if(player.isAlive()){
             player.draw(batch, shapeRenderer);
-            player.update(delta);
+            player.update(d);
             player.heal(1);
             if(fireBalls != null){
                 for(FireBall fireBall : fireBalls) {
                     fireBall.draw(batch, shapeRenderer);
-                    fireBall.update(delta);
+                    fireBall.update(d);
                     fireBall.move();
                     if(fireBall.isExpired()) {
                         fireBalls.remove(fireBall);
@@ -125,6 +129,11 @@ public class GameScreen extends Screen {
                 }
         }
     }
+
+    @Override public void resize(int width, int height) {}
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
     @Override
     public void dispose() {
         background.dispose();
