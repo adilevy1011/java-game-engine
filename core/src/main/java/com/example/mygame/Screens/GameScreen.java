@@ -9,9 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.example.mygame.Entities.Enemy;
-import com.example.mygame.Entities.FireBall;
-import com.example.mygame.Entities.Player;
+import com.example.mygame.Entities.*;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.example.mygame.Main;
 
@@ -19,6 +17,7 @@ public class GameScreen implements Screen {
     
     private Player player;
     private ArrayList<Enemy> enemies;
+    private ArrayList<Obstacle> obstacles;
     private ArrayList<FireBall> fireBalls;
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
@@ -35,6 +34,7 @@ public class GameScreen implements Screen {
         fireBalls = new ArrayList<FireBall>();
         player = new Player("sprite.png", 100, 100, 70, 70, 100, 3);
         enemies = new ArrayList<Enemy>();
+        obstacles = new ArrayList<Obstacle>();
         camera = new OrthographicCamera();
 
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

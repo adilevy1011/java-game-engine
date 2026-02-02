@@ -17,7 +17,7 @@ public class PauseScreen implements Screen {
     private java.util.ArrayList<Button> buttonList; 
     private Texture background;
     private float mouseX, mouseY;
-    private Button startGame, options, exit;
+    private Button startGame, backToMenu, exit;
     public PauseScreen(Main game) {
         this.game = game;
         
@@ -30,8 +30,8 @@ public class PauseScreen implements Screen {
         background = new Texture("grassBackground.jpg");
         startGame = new Button("Resume Game", Gdx.graphics.getWidth() / 2 - 100, 300, 200, 50, batch, shapeRenderer, new com.badlogic.gdx.graphics.g2d.BitmapFont()); 
         buttonList.add(startGame);
-        options = new Button("Options", Gdx.graphics.getWidth() / 2 - 100, 200, 200, 50, batch, shapeRenderer, new com.badlogic.gdx.graphics.g2d.BitmapFont());
-        buttonList.add(options);
+        backToMenu = new Button("Back to Menu", Gdx.graphics.getWidth() / 2 - 100, 200, 200, 50, batch, shapeRenderer, new com.badlogic.gdx.graphics.g2d.BitmapFont());
+        buttonList.add(backToMenu);
         exit = new Button("Exit Game", Gdx.graphics.getWidth() / 2 - 100, 100, 200, 50, batch, shapeRenderer, new com.badlogic.gdx.graphics.g2d.BitmapFont());
         buttonList.add(exit);  
     }
@@ -64,8 +64,8 @@ public class PauseScreen implements Screen {
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && startGame.isClicked(mouseX, mouseY)) {
             game.setScreen(new GameScreen(game));
         }
-        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && options.isClicked(mouseX, mouseY)) {
-            // Handle options button click actions here
+        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && backToMenu.isClicked(mouseX, mouseY)) {
+            game.setScreen(new MenuScreen(game));
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && exit.isClicked(mouseX, mouseY)) {
             Gdx.app.exit();

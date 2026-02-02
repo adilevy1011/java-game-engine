@@ -13,9 +13,6 @@ import com.badlogic.gdx.Screen;
 public class Main extends Game {
     
     private MenuScreen menuScreen;
-    private GameScreen gameScreen;
-    private Screen currentScreen;
-    private ArrayList <Screen> screens;
     /**
      * Called when the application is created.
      */
@@ -24,6 +21,7 @@ public class Main extends Game {
         menuScreen = new MenuScreen(this);
         setScreen(menuScreen);
     }
+
     
 
     

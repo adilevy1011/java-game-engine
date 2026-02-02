@@ -3,9 +3,7 @@ package com.example.mygame.Screens;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -68,7 +66,8 @@ public class MenuScreen implements Screen {
         mouseX = Gdx.input.getX();
         mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && startGame.isClicked(mouseX, mouseY)) {
-            game.setScreen(new GameScreen(game));
+            GameScreen gameScreen=new GameScreen(game);
+            game.setScreen(gameScreen);
         }
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && options.isClicked(mouseX, mouseY)) {
             // Handle options button click actions here
