@@ -22,10 +22,10 @@ Sprite
 └──LivingEntity
     ├──Enemy
     └──Player
-├──MenuScreen (implements LibGDX Screen)
-├──PauseScreen (implements LibGDX Screen)
-└──GameScreen (implements LibGDX Screen)
-    └──LevelOne
+MenuScreen (implements LibGDX Screen)
+PauseScreen (implements LibGDX Screen)
+GameScreen (implements LibGDX Screen)
+└──LevelOne
 ```
 ## Installations and dependencies: 
 - This project uses Gradle to manage dependencies.
