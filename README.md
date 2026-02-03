@@ -14,20 +14,18 @@ Arrows - Shooting fireballs
 Story / world:
 *Will add later*
 ## Class Structure:
-Entities-
-  -Sprite
-    -FireBall
-    -Obstacle
-    =LivingEntity
-      =Enemy
-      =Player
-Screens-
-  =MenuScreen
-  =PauseScreen
-  =GameScreen
-    =LevelOne
-    =…
-  -Button
+Button
+Sprite
+├──FireBall
+├──Obstacle
+└──LivingEntity
+    ├──Enemy
+    └──Player
+├──MenuScreen (implements LibGDX Screen)
+├──PauseScreen (implements LibGDX Screen)
+└──GameScreen (implements LibGDX Screen)
+    └──LevelOne
+  
 ## Installations and dependencies: 
 - This project uses Gradle to manage dependencies.
 - Make sure you have Java 17 installed.
