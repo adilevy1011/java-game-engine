@@ -1,11 +1,8 @@
 package com.example.mygame;
 
-import java.util.ArrayList;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.example.mygame.Screens.*;
-import com.badlogic.gdx.Screen;
 
 /**
  * Main game class that initializes and runs the screens.

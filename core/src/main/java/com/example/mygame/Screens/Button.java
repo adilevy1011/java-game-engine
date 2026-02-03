@@ -10,9 +10,7 @@ public class Button {
     
     private float x, y, width, height;
     private String label;
-    private ShapeRenderer shapeRenderer;
     private BitmapFont font;
-    private Batch batch;
     private GlyphLayout layout = new GlyphLayout();
 
     public Button(String label, float x, float y, float width, float height, Batch batch, ShapeRenderer shapeRenderer, BitmapFont font) {
@@ -21,8 +19,6 @@ public class Button {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.shapeRenderer = shapeRenderer;
-        this.batch = batch;
         this.font = font;
     }
 
