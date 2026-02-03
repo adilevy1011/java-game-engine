@@ -2,6 +2,7 @@ package com.example.mygame.Entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Sprite {
@@ -10,9 +11,7 @@ public class Sprite {
     private int y;
     private int width;
     private int height;
-    private int health;
-    private int maxHealth;
-    private int speed;
+    
     private Texture texture;
     /**
      * Constructor for Sprite class.
@@ -31,9 +30,7 @@ public class Sprite {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.health = health;
-        this.maxHealth = health;
-        this.speed = speed;
+       
 
     }
     /**
@@ -71,54 +68,21 @@ public class Sprite {
         this.height = height;
     }
 
-    public void moveUp() {
-        this.y += this.speed;
-    }
-
-    public void moveDown() {
-        this.y -= this.speed;
-    }
-
-    public void moveLeft() {
-        this.x -= this.speed;
-    }
-
-    public void moveRight() {
-        this.x += this.speed;
-    }
+    
     public int getX() {
         return x;
     }
     public int getY() {
         return y;
     }
-    public int getHealth() {
-        return health;
-    }
-    public void setHealth(int health) {
-        this.health = health;
-    }
-    public int getSpeed() {
-        return speed;
-    }
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
+    
     public void setX(int x) {
         this.x = x;
     }
     public void setY(int y) {
         this.y = y;
     }
-    public void takeDamage(int damage) {
-        this.health -= damage;
-        if (this.health < 0) {
-            this.health = 0;
-        }
-    }
-    public void heal(int amount) {
-        this.health += amount;
-    }
+    
     public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
@@ -130,19 +94,20 @@ public class Sprite {
     public Texture getTexture() {
         return texture;
     }
-    public boolean isDead() {
-        return this.health <= 0;
-    }
+    
     public void draw(SpriteBatch batch, ShapeRenderer shapeRenderer) {
-        // Draw health bar
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(com.badlogic.gdx.graphics.Color.RED);
-        shapeRenderer.rect(x, y + height + 5, width * ((float)health / maxHealth), 5);
-        shapeRenderer.end();
+        
 
         // Draw sprite
-        batch.begin();
-        batch.draw(texture, x, y, width, height);
-        batch.end();
+        if(imagePath != null){
+            batch.begin();
+            batch.draw(texture, x, y, width, height);
+            batch.end();
+        } else{
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(Color.BROWN);
+            shapeRenderer.rect(x, y, width, height);
+            shapeRenderer.end();
+        }
     }
 }

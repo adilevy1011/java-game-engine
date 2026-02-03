@@ -17,7 +17,7 @@ public class GameScreen implements Screen {
     
     private Player player;
     private ArrayList<Enemy> enemies;
-    private ArrayList<Obstacle> obstacles;
+    private ArrayList<Sprite> obstacles;
     private ArrayList<FireBall> fireBalls;
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
@@ -34,13 +34,17 @@ public class GameScreen implements Screen {
         fireBalls = new ArrayList<FireBall>();
         player = new Player("sprite.png", 100, 100, 70, 70, 100, 3);
         enemies = new ArrayList<Enemy>();
-        obstacles = new ArrayList<Obstacle>();
+        obstacles = new ArrayList<Sprite>();
         camera = new OrthographicCamera();
 
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         for (int i = 0; i < 5; i++) {
             enemies.add(new Enemy("enemy.png", 200 + i * 120, 200, 50, 50,1,300));
         }
+        for(int i = 0; i < 5; i++) {
+            obstacles.add(new Sprite("fireball.png", i*10, 300, 40, 40, 0, 0));
+        }
+        
     }
     @Override
     public void render(float delta) {
@@ -75,15 +79,35 @@ public class GameScreen implements Screen {
             
             if (Gdx.input.isKeyPressed(Input.Keys.W)) {
                 player.moveUp();
+                for(Sprite obstacle : obstacles) {
+                    if(obstacle.collidesWith(player)) {
+                        player.moveDown();
+                    }
+                }
             }
             if (Gdx.input.isKeyPressed(Input.Keys.S)) {
                 player.moveDown();
+                for(Sprite obstacle : obstacles) {
+                    if(obstacle.collidesWith(player)) {
+                        player.moveUp();
+                    }
+                }
             }
             if (Gdx.input.isKeyPressed(Input.Keys.A)) {
                 player.moveLeft();
+                for(Sprite obstacle : obstacles) {
+                    if(obstacle.collidesWith(player)) {
+                        player.moveRight();
+                    }
+                }
             }
             if (Gdx.input.isKeyPressed(Input.Keys.D)) {
                 player.moveRight();
+                for(Sprite obstacle : obstacles) {
+                    if(obstacle.collidesWith(player)) {
+                        player.moveLeft();
+                    }
+                }
             }
             if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
                 fireBalls.add(player.shootFireBall(0, 10));
@@ -104,6 +128,20 @@ public class GameScreen implements Screen {
 
         }
         
+        if(!obstacles.isEmpty()) {
+            for(Sprite obstacle : obstacles) {
+                obstacle.draw(batch, shapeRenderer);
+                if(fireBalls != null){
+                        for(FireBall fireBall : fireBalls) {
+                            if(obstacle.collidesWith(fireBall)) {
+                                fireBalls.remove(fireBall);
+                                break;
+                            }
+                        }
+                    }
+            }
+        }
+
         if(!enemies.isEmpty()) {
                 for (int i = 0; i < enemies.size(); i++) {
                     

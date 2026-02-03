@@ -1,7 +1,7 @@
 package com.example.mygame.Entities;
 
 
-public class Enemy extends Sprite {
+public class Enemy extends LivingEntity {
     
     private int damage, range; 
     

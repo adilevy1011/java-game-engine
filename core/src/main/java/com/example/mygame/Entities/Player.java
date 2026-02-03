@@ -1,6 +1,6 @@
 package com.example.mygame.Entities;
 
-public class Player extends Sprite {
+public class Player extends LivingEntity {
     
     private float timeOfHit = 0f; 
     private float timePassed = 3f; // seconds
