@@ -1,5 +1,3 @@
-# java-game-engine
-
 # Java Game Engine Prototype
 
 *Author: Adi Levy*
