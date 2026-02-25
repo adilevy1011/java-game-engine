@@ -1,19 +1,27 @@
-# MyGame
+# java-game-engine
+
+# Java Game Engine Prototype
 
 *Author: Adi Levy*
 
-## Introduction:
-This is a personal java project I built using the LibGDX library. It is a PC game featuring different levels in which the player has to cross different types of challenges. When creating this game I was inspired by the game Dungeons & Dragons and wanted to make a game that would encompass the feeling of playing a D&D campaign.  
+## Overview
+This project is an object-oriented game framework built in Java using the LibGDX library.  
+It features a structured game loop, menu system, screen management, and a basic player vs enemy combat system.  
+The focus of this project is on software architecture and OOP design rather than narrative content.
 
-## Core features: 
-*Will add later*
-## Gameplay & Controls:
-WASD - Player movement
-Arrows - Shooting fireballs
-	Escape - Pause game
-Story / world:
-*Will add later*
-## Class Structure:
+## Core Features
+- Custom game loop
+- Menu, pause, and game screens
+- Object-oriented class hierarchy for game entities
+- Player vs enemy combat prototype
+- Modular level structure (LevelOne implemented as a template)
+
+## Controls
+- **WASD** – Player movement  
+- **Arrow keys** – Fireball shooting  
+- **Escape** – Pause game  
+
+## Class Structure
 ```
 Button
 Sprite
@@ -27,13 +35,13 @@ PauseScreen (implements LibGDX Screen)
 GameScreen (implements LibGDX Screen)
 └──LevelOne
 ```
-## Installations and dependencies: 
-- This project uses Gradle to manage dependencies.
-- Make sure you have Java 17 installed.
-- Download the `MyGame.jar` file from this repository (or releases page).
-- Double-click the jar to run the game, or run from command line: java -jar MyGame.jar
-
+## Installation & Running
+- Requires Java 17
+- Uses Gradle for dependency management
+- Download `MyGame.jar` from this repository
+- Run from command line: `java -jar MyGame.jar`  
+- Or double-click the jar to launch the game
 
 ## Credits:
-All code and assets were created by me. 
+All code and assets were created by Adi Levy. 
 
